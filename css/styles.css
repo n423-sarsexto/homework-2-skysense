@@ -69,9 +69,13 @@ h1, h2, h3, h4, h5, h6, p {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  height: 100px;
   margin-bottom: 20px;
   padding: 20px;
   /* The button used to open the sidebar */
+}
+.top-bar .nav-toggle {
+  width: 30%;
 }
 .top-bar .nav-toggle .openbtn {
   font-size: 20px;
@@ -83,6 +87,22 @@ h1, h2, h3, h4, h5, h6, p {
 }
 .top-bar .nav-toggle .openbtn:hover {
   background-color: #444;
+}
+.top-bar .name {
+  width: 30%;
+}
+.top-bar .name h1 {
+  text-align: center;
+  margin-bottom: 0px;
+}
+.top-bar .lookup {
+  width: 30%;
+}
+.top-bar .lookup input[type=text] {
+  float: right;
+}
+.top-bar .lookup input[type=submit] {
+  float: right;
 }
 
 .current {
