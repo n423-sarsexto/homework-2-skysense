@@ -9,3 +9,9 @@ html, body {
 h1, h2, h3, h4, h5, h6, p {
  margin-bottom: 16px
 }
+
+/* Styling to animate transition upon nav use */
+.main {
+    transition: margin-left .5s; /* If you want a transition effect */
+    padding: 20px;
+  }
