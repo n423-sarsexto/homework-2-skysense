@@ -7,12 +7,12 @@
     "lib": "lib"
   },
   "scripts": {
-    "compile-sass": "node-sass scss/styles.scss css/styles.css -w"
+    "compile-sass": "sass scss/styles.scss css/styles.css -w"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "node-sass": "^9.0.0"
+    "sass": "^1.66.1"
   }
 }
