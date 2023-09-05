@@ -1,5 +1,3 @@
 # SkySense
 
-## Summer Sexton
-
-### N423
+## Summer Sexton - N423
