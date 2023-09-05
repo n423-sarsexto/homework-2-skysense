@@ -10,8 +10,10 @@ h1, h2, h3, h4, h5, h6, p {
  margin-bottom: 16px
 }
 
-/* Styling to animate transition upon nav use */
+/* Main body of content */
 .main {
-    transition: margin-left .5s; /* If you want a transition effect */
-    padding: 20px;
+    transition: margin-left .5s; /* Transition effect for menu */
+    min-width: 100vw;
+    min-height: 100%;
+    background-color: lightgray;
   }

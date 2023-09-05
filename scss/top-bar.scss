@@ -1,0 +1,25 @@
+.top-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 20px;
+
+    /* The button used to open the sidebar */
+  .nav-toggle{
+    .openbtn {
+        font-size: 20px;
+        cursor: pointer;
+        background-color: #111;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+      }
+      
+      .openbtn:hover {
+        background-color: #444;
+      }
+  }
+    
+}
