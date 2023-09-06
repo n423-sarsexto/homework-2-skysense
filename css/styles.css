@@ -53,6 +53,7 @@ h1, h2, h3, h4, h5, h6, p {
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+  cursor: pointer;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
@@ -82,7 +83,7 @@ h1, h2, h3, h4, h5, h6, p {
   cursor: pointer;
   background-color: #111;
   color: white;
-  border: none;
+  border: 2px solid #053C5E;
   padding: 10px 15px;
 }
 .top-bar .nav-toggle .openbtn:hover {
@@ -113,9 +114,12 @@ h1, h2, h3, h4, h5, h6, p {
   border: 2px solid #fff;
   border-radius: 20px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+}
+.current .split {
+  height: 18vh;
+  width: 45%;
 }
 
 .future {

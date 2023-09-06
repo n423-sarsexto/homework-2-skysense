@@ -6,7 +6,11 @@
     border: 2px solid #fff;
     border-radius: 20px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+
+    .split{
+        height: 18vh;
+        width: 45%;
+    }
 }
