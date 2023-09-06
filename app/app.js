@@ -16,3 +16,31 @@ function closeNav() {
 const baseURL = `https://api.weatherapi.com/v1/forecast.json?key=`;
 const apiKey = `4ccde8f188014b72810193654232808`;
 const apiVals = `&days=5&aqi=no&alerts=no`;
+
+function getLocation(){
+    $("#submit").on("click", (e)=>{
+        e.preventDefault();
+        let location = $("#location").val();
+
+        if(location != ''){
+            // let cityURL = baseURL + apiKey + "&q=" + city + "&days=2&aqi=no&alerts=no";
+            let apiURL = `${baseURL}${apiKey}&q=${location}${apiVals}`
+            $.getJSON(apiURL, (data)=>{
+                console.log(data);
+            }).fail(function(e) {
+                console.log( "error:", e );
+                });
+        }
+
+        console.log(location, " is the location given.")
+    })
+    
+}
+
+function initListeners(){
+    getLocation();
+}
+
+$(document).ready(function(){
+    initListeners(); 
+});
