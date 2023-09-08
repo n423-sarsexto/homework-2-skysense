@@ -36,7 +36,7 @@ function setWeather(weatherData){
     // current details
     $(".current-weather-img").html(`<img src="${weatherData.current.condition.icon}" alt="${weatherData.current.condition.text}">`)
     $(".current .location-name").html(`Currently in ${weatherData.location.name}`);
-    $(".current .last-updated").html(`Last updated ${weatherData.current.last_updated}`);
+    $(".current .last-updated").html(`Last updated ${weatherData.current.last_updated} ${weatherData.location.tz_id} time`);
     $(".present-details .degrees-f").html(weatherData.current.temp_f);
     $(".present-details .degrees-c").html(weatherData.current.temp_c);
     $(".feels-like .degrees-f").html(weatherData.current.feelslike_f);
