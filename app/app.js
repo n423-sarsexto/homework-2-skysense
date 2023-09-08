@@ -1,14 +1,10 @@
 //navigation JS
-/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+/* Set the width of the sidebar to 250px */
 function openNav() {
     $("#sidebarNav").css("width","250px");
-    $(".main").css("margin-left","250px");
 }
-  
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
 function closeNav() {
     $("#sidebarNav").css("width","0");
-    $(".main").css("margin-left","0");
 }
 
 //https://api.weatherapi.com/v1/forecast.json?key=4ccde8f188014b72810193654232808&q=46239&days=5&aqi=no&alerts=no
@@ -27,14 +23,27 @@ function getLocation(){
             let apiURL = `${baseURL}${apiKey}&q=${location}${apiVals}`
             $.getJSON(apiURL, (data)=>{
                 console.log(data);
+                setWeather(data);
             }).fail(function(e) {
                 console.log( "error:", e );
                 });
         }
 
-        console.log(location, " is the location given.")
-    })
-    
+    })  
+}
+
+function setWeather(weatherData){
+    // current details
+    $(".current-weather-img").html(`<img src="${weatherData.current.condition.icon}" alt="${weatherData.current.condition.text}">`)
+    $(".current .location-name").html(`Currently in ${weatherData.location.name}`);
+    $(".current .last-updated").html(`Last updated ${weatherData.current.last_updated}`);
+    $(".present-details .degrees-f").html(weatherData.current.temp_f);
+    $(".present-details .degrees-c").html(weatherData.current.temp_c);
+    $(".feels-like .degrees-f").html(weatherData.current.feelslike_f);
+    $(".feels-like .degrees-c").html(weatherData.current.feelslike_c);
+    $(".addtl-present .rain").html(`Precipitation: ${weatherData.current.precip_in}%`);
+    $(".addtl-present .humidity").html(`Humidity: ${weatherData.current.humidity}%`);
+    $(".addtl-present .wind").html(`Wind: ${weatherData.current.wind_mph}mph ${weatherData.current.wind_dir}`);
 }
 
 function initListeners(){

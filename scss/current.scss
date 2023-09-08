@@ -2,15 +2,55 @@
     margin: 0 auto;
     width: 80%;
     min-height: 20vh;
-    background-color: rgba(0,0,0,.4);
-    border: 2px solid #fff;
+    background-color: $greying;
+    border: 2px solid $white;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    color: $white;
 
-    .split{
+    .split-1{
         height: 18vh;
-        width: 45%;
+        width: 35%;
+        p{
+            margin-bottom: 5px;
+        }
+
+        h2{
+            margin-bottom: 5px;
+        }
+
+        .present-details{
+            display: flex;
+            align-items: center;
+
+            .current-weather-img img{
+                height: 40px;
+                margin-right: 5px;
+            }
+            h3{
+                font-family: Lato-Light;
+                margin-right: 15px;
+            }
+            .feels-like{
+                height: 40px;
+                font-family: Lato;
+                font-size: 0.8rem;
+                margin-bottom: 2px;
+            }
+        }
+    }
+
+    .split-2{
+        height: 18vh;
+        width: 60%;
+        
+        .last-updated{
+            font-family: Lato-Light;
+            font-size: x-small;
+            text-align: right;
+            margin-bottom: 5px;
+        }
     }
 }

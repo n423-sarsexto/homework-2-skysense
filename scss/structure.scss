@@ -6,14 +6,25 @@
 html, body {
  height: 100%
 }
-h1, h2, h3, h4, h5, h6, p {
- margin-bottom: 16px
+h1, h2, h3, h4, h5, h6{
+  margin-bottom: 16px;
+  font-family: Lato;
+} 
+p {
+ margin-bottom: 16px;
+ font-family: Merriweather-Light;
+}
+a{
+  font-family: Merriweather;
 }
 
 /* Main body of content */
 .main {
-    transition: margin-left .5s; /* Transition effect for menu */
     min-width: 100vw;
     min-height: 100%;
     background-color: lightgray;
+    background-image: url("../assets/homepage-background.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }

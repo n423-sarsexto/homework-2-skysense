@@ -1,3 +1,27 @@
+@font-face {
+  font-family: Lato;
+  src: url("../assets/Lato/Lato-Regular.ttf");
+}
+@font-face {
+  font-family: Lato-Light;
+  src: url("../assets/Lato/Lato-Light.ttf");
+}
+@font-face {
+  font-family: Lato-Bold;
+  src: url("../assets/Lato/Lato-Bold.ttf");
+}
+@font-face {
+  font-family: Merriweather;
+  src: url("../assets/Merriweather/Merriweather-Regular.ttf");
+}
+@font-face {
+  font-family: Merriweather-Light;
+  src: url("../assets/Merriweather/Merriweather-Light.ttf");
+}
+@font-face {
+  font-family: Merriweather-Bold;
+  src: url("../assets/Merriweather/Merriweather-Bold.ttf");
+}
 * {
   margin: 0;
   padding: 0;
@@ -8,16 +32,29 @@ html, body {
   height: 100%;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3, h4, h5, h6 {
   margin-bottom: 16px;
+  font-family: Lato;
+}
+
+p {
+  margin-bottom: 16px;
+  font-family: Merriweather-Light;
+}
+
+a {
+  font-family: Merriweather;
 }
 
 /* Main body of content */
 .main {
-  transition: margin-left 0.5s; /* Transition effect for menu */
   min-width: 100vw;
   min-height: 100%;
   background-color: lightgray;
+  background-image: url("../assets/homepage-background.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 /* The sidebar menu */
@@ -76,50 +113,100 @@ h1, h2, h3, h4, h5, h6, p {
   /* The button used to open the sidebar */
 }
 .top-bar .nav-toggle {
-  width: 30%;
+  width: 40%;
 }
 .top-bar .nav-toggle .openbtn {
-  font-size: 20px;
+  font-size: 1.2rem;
+  font-family: Lato;
   cursor: pointer;
-  background-color: #111;
-  color: white;
+  background-color: #1571D4;
+  color: rgb(243, 245, 247);
   border: 2px solid #053C5E;
+  border-radius: 10px;
   padding: 10px 15px;
 }
 .top-bar .nav-toggle .openbtn:hover {
-  background-color: #444;
+  background-color: #053C5E;
 }
 .top-bar .name {
-  width: 30%;
+  width: 15%;
+  color: rgb(243, 245, 247);
 }
 .top-bar .name h1 {
   text-align: center;
   margin-bottom: 0px;
 }
 .top-bar .lookup {
-  width: 30%;
+  width: 40%;
 }
 .top-bar .lookup input[type=text] {
   float: right;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  border: 2px solid #053C5E;
+  border-radius: 10px 0px 0px 10px;
 }
 .top-bar .lookup input[type=submit] {
   float: right;
+  font-size: 1.2rem;
+  font-family: Lato;
+  cursor: pointer;
+  background-color: #1571D4;
+  color: rgb(243, 245, 247);
+  border: 2px solid #053C5E;
+  border-radius: 0px 10px 10px 0px;
+  padding: 10px 15px;
 }
 
 .current {
   margin: 0 auto;
   width: 80%;
   min-height: 20vh;
-  background-color: rgba(0, 0, 0, 0.4);
-  border: 2px solid #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgb(243, 245, 247);
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  color: rgb(243, 245, 247);
 }
-.current .split {
+.current .split-1 {
   height: 18vh;
-  width: 45%;
+  width: 35%;
+}
+.current .split-1 p {
+  margin-bottom: 5px;
+}
+.current .split-1 h2 {
+  margin-bottom: 5px;
+}
+.current .split-1 .present-details {
+  display: flex;
+  align-items: center;
+}
+.current .split-1 .present-details .current-weather-img img {
+  height: 40px;
+  margin-right: 5px;
+}
+.current .split-1 .present-details h3 {
+  font-family: Lato-Light;
+  margin-right: 15px;
+}
+.current .split-1 .present-details .feels-like {
+  height: 40px;
+  font-family: Lato;
+  font-size: 0.8rem;
+  margin-bottom: 2px;
+}
+.current .split-2 {
+  height: 18vh;
+  width: 60%;
+}
+.current .split-2 .last-updated {
+  font-family: Lato-Light;
+  font-size: x-small;
+  text-align: right;
+  margin-bottom: 5px;
 }
 
 .future {
