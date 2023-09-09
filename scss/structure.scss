@@ -6,22 +6,18 @@
 html, body {
  height: 100%
 }
-h1, h2, h3, h4, h5, h6{
+h1, h2, h3, h4, h5, h6, p{
   margin-bottom: 16px;
   font-family: Lato;
-} 
-p {
- margin-bottom: 16px;
- font-family: Merriweather-Light;
 }
 a{
-  font-family: Merriweather;
+  font-family: Lato-Bold;
 }
 
 /* Main body of content */
 .main {
     min-width: 100vw;
-    min-height: 100%;
+    min-height: 100vh;
     background-color: lightgray;
     background-image: url("../assets/homepage-background.jpeg");
     background-repeat: no-repeat;

@@ -9,9 +9,9 @@
 
     /* The button used to open the sidebar */
   .nav-toggle{
-    width: 40%;
+    width: 15%;
     .openbtn {
-        font-size: 1.2rem;
+        font-size: 1.2em;
         font-family: Lato;
         cursor: pointer;
         background-color: $light-blue;
@@ -39,10 +39,11 @@
     width: 40%;
     input[type=text]{ 
         float: right;
-        padding: 10px 15px;
+        padding: 10px 10px;
         font-size: 1.2rem;
         border: 2px solid $dark-blue;
         border-radius: 10px 0px 0px 10px;
+        max-width:60%;
     }
     input[type=submit]{ 
         float: right;
@@ -54,7 +55,28 @@
         border: 2px solid $dark-blue;
         border-radius: 0px 10px 10px 0px;
         padding: 10px 15px;
+        max-width:40%;
     }
   }
     
+}
+
+@media screen and (max-width: 750px){
+  .top-bar{
+    flex-wrap: wrap;
+    min-height: 100px;
+    width: 100vw;
+    .nav-toggle, .name{
+      width: max-content;
+      margin-bottom: 10px;
+    }
+    .lookup{
+      width: 100%;
+      margin-right: 5%;
+      input[type=text], input[type=submit]{
+        float: right;
+        font-size: 1em;
+      }
+    }
+  }
 }

@@ -37,6 +37,24 @@
     cursor: pointer;
   }
 
+  .buttons{
+    display: flex;
+    flex-direction: column;
+
+    button{
+      width: 200px;
+      margin: 8px 8px 8px 32px;
+      font-size: 1.2rem;
+        font-family: Lato;
+        cursor: pointer;
+        background-color: $dark-blue;
+        color: $white;
+        border: 2px solid $dark-blue;
+        border-radius: 10px;
+        padding: 10px 15px;
+    }
+  }
+
 }   
   
   /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */

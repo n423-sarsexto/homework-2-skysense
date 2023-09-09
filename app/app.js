@@ -33,9 +33,40 @@ function getLocation(){
 }
 
 function setWeather(weatherData){
-    // current details
+
+    //retrieve current hour
+    let curDate = new Date(weatherData.current.last_updated);
+    let curHour = curDate.getHours();
+    let futureCode = '';
+
+    //create hourly forecast
+    for(let i = 0; i < 6; i++){
+        //don't loop through midnight of the current day
+        if(i + curHour < 23){
+            time = new Date(weatherData.forecast.forecastday[0].hour[curHour + i].time);
+            hourTime = time.getHours();
+            futureCode += `<div class="hour">
+            <img src=${weatherData.forecast.forecastday[0].hour[curHour + i].condition.icon}>
+            <p>${weatherData.forecast.forecastday[0].hour[curHour + i].temp_f}<sup>°F</sup> | ${weatherData.forecast.forecastday[0].hour[curHour + i].temp_c}<sup>°C</sup></p>
+            <p>${weatherData.forecast.forecastday[0].hour[curHour + i].condition.text}</p>
+            <h6>${hourTime}:00</h6>
+            </div>`
+        }//go through the remaining hours
+        else{
+            hourTime = (i + curHour) - 23;
+            futureCode += `<div class="hour">
+            <img src=${weatherData.forecast.forecastday[0].hour[hourTime].condition.icon}>
+            <p>${weatherData.forecast.forecastday[0].hour[hourTime].temp_f}<sup>°F</sup> | ${weatherData.forecast.forecastday[0].hour[hourTime].temp_c}<sup>°C</sup></p>
+            <p>${weatherData.forecast.forecastday[0].hour[hourTime].condition.text}</p>
+            <h6>${hourTime}:00</h6>
+            </div>`
+        }
+        
+    }
+
+    // current details html
     $(".current").html(`<div class="split-1">
-    <h2><span class="location-name">Currently in ${weatherData.location.name}</span></h2>
+    <h2><span class="location-name">${weatherData.location.name} - ${weatherData.current.condition.text}</span></h2>
     <div class="present-details">
         <div class="current-weather-img"><img src="${weatherData.current.condition.icon}" alt="${weatherData.current.condition.text}"></div>
         <h3><span class="degrees-f">${weatherData.current.temp_f}</span><sup>°F</sup> &nbsp; | &nbsp; <span
@@ -46,14 +77,30 @@ function setWeather(weatherData){
         </p>
     </div>
     <div class="addtl-present">
+        <div class="column">
+            <p><strong>High:</strong> ${weatherData.forecast.forecastday[0].day.maxtemp_f}<sup>°F</sup> | ${weatherData.forecast.forecastday[0].day.maxtemp_c}<sup>°C</sup></p>
+            <p><strong>Average:</strong> ${weatherData.forecast.forecastday[0].day.avgtemp_f}<sup>°F</sup> | ${weatherData.forecast.forecastday[0].day.avgtemp_c}<sup>°C</sup></p>
+            <p><strong>Low:</strong> ${weatherData.forecast.forecastday[0].day.mintemp_f}<sup>°F</sup> | ${weatherData.forecast.forecastday[0].day.mintemp_c}<sup>°C</sup></p>
+        </div>
+        <div class="column">
         <p class="rain">Precipitation: ${weatherData.current.precip_in}%</p>
         <p class="humidity">Humidity: ${weatherData.current.humidity}%</p>
-        <p class="wind">Wind: ${weatherData.current.wind_mph}mph ${weatherData.current.wind_dir}</p>
+        <p class="wind">Wind: ${weatherData.current.wind_mph} MPH ${weatherData.current.wind_dir}</p></div>
+        
     </div>
 </div>
 <div class="split-2">
-    <p class="last-updated">Last updated ${weatherData.current.last_updated} ${weatherData.location.tz_id} time</p>
-    <p>Enter a location to get the weather data.</p>
+    <div class="row">
+    <h4 style="margin-bottom: 1px;">Six-hour forecast...</h4>
+    <p class="last-updated">Last updated ${weatherData.current.last_updated} ${weatherData.location.tz_id} time</p></div>
+    <div class="hourly">
+    ${futureCode}</div>
+    <div class="sun-facts">
+        <p>Sunrise: ${weatherData.forecast.forecastday[0].astro.sunrise}</p>
+        <p>Sunset: ${weatherData.forecast.forecastday[0].astro.sunset}</p>
+        <p>Moonrise: ${weatherData.forecast.forecastday[0].astro.moonrise}</p>
+        <p>Moonset: ${weatherData.forecast.forecastday[0].astro.moonset}</p>
+    </div>
 </div>`);
 
     // future details
@@ -61,9 +108,56 @@ function setWeather(weatherData){
     $(".future").html("");
     //then, get new future forecast data
     for(let i = 1; i < weatherData.forecast.forecastday.length; i++){
+        //calculate day of the week
+        let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+        let dateFix = i + 1;
+        let futureDay = (new Date(weatherData.forecast.forecastday[i].date).getDay()) +1;
+
         //for each, append the elements inside of a new "day" element
         $(".future").append(`<div class="day">
-            <div class="date">${weatherData.forecast.forecastday[i].date}</div>
+            <div class="date"><h2>${days[futureDay]}</h2></div>
+            <div class="temperatures">
+                <div class="temp-img"><img src="${weatherData.forecast.forecastday[i].day.condition.icon}" alt="${weatherData.forecast.forecastday[i].day.condition.text}"></div>
+                <div class="temp-info">
+                    <h3>${weatherData.forecast.forecastday[i].day.condition.text}</h3>
+                    <h4>${weatherData.forecast.forecastday[i].day.avgtemp_f}<sup>°F</sup> | ${weatherData.forecast.forecastday[i].day.avgtemp_c}<sup>°C</sup></h4>
+                    <p>High: ${weatherData.forecast.forecastday[i].day.maxtemp_f}<sup>°F</sup> | ${weatherData.forecast.forecastday[i].day.maxtemp_c}<sup>°C</sup></p>
+                    <p>Low: ${weatherData.forecast.forecastday[i].day.mintemp_f}<sup>°F</sup> | ${weatherData.forecast.forecastday[i].day.mintemp_c}<sup>°C</sup></p>
+                </div>
+            </div>
+            <div class="statistics">
+                <div class="stat">
+                    <p>${weatherData.forecast.forecastday[i].day.avghumidity}%</p>
+                    <h4>Humidity</h4>
+                </div>
+                <div class="stat">
+                    <p>${weatherData.forecast.forecastday[i].day.maxwind_mph} MPH</p>
+                    <h4>Wind</h4>
+                </div>
+                <div class="stat">
+                    <p>${weatherData.forecast.forecastday[i].day.totalprecip_in} in.</p>
+                    <h4>Rainfall</h4>
+                </div>
+                <div class="stat">
+                    <p>${weatherData.forecast.forecastday[i].day.totalsnow_cm} cm.</p>
+                    <h4>Snowfall</h4>
+                </div>
+                <div class="stat">
+                    <p>${weatherData.forecast.forecastday[i].day.daily_chance_of_rain}%</p>
+                    <h4>Chance of Rain</h4>
+                </div>
+                <div class="stat">
+                    <p>${weatherData.forecast.forecastday[i].day.daily_chance_of_snow}%</p>
+                    <h4>Chance of Snow</h4>
+                </div>
+            </div>
+            <div class="bottom-row">
+                <p>Sunrise: ${weatherData.forecast.forecastday[i].astro.sunrise}</p>
+                <p>Sunset: ${weatherData.forecast.forecastday[i].astro.sunset}</p>
+                <p>Moonrise: ${weatherData.forecast.forecastday[i].astro.moonrise}</p>
+                <p>Moonset: ${weatherData.forecast.forecastday[i].astro.moonset}</p>
+                <p>Moon Phase: ${weatherData.forecast.forecastday[i].astro.moon_phase}</p>
+            </div>
         </div>`);
     }
 }

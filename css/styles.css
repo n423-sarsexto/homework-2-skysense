@@ -10,18 +10,6 @@
   font-family: Lato-Bold;
   src: url("../assets/Lato/Lato-Bold.ttf");
 }
-@font-face {
-  font-family: Merriweather;
-  src: url("../assets/Merriweather/Merriweather-Regular.ttf");
-}
-@font-face {
-  font-family: Merriweather-Light;
-  src: url("../assets/Merriweather/Merriweather-Light.ttf");
-}
-@font-face {
-  font-family: Merriweather-Bold;
-  src: url("../assets/Merriweather/Merriweather-Bold.ttf");
-}
 * {
   margin: 0;
   padding: 0;
@@ -32,24 +20,19 @@ html, body {
   height: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 16px;
   font-family: Lato;
 }
 
-p {
-  margin-bottom: 16px;
-  font-family: Merriweather-Light;
-}
-
 a {
-  font-family: Merriweather;
+  font-family: Lato-Bold;
 }
 
 /* Main body of content */
 .main {
   min-width: 100vw;
-  min-height: 100%;
+  min-height: 100vh;
   background-color: lightgray;
   background-image: url("../assets/homepage-background.jpeg");
   background-repeat: no-repeat;
@@ -92,6 +75,22 @@ a {
   margin-left: 50px;
   cursor: pointer;
 }
+.sidebar .buttons {
+  display: flex;
+  flex-direction: column;
+}
+.sidebar .buttons button {
+  width: 200px;
+  margin: 8px 8px 8px 32px;
+  font-size: 1.2rem;
+  font-family: Lato;
+  cursor: pointer;
+  background-color: #053C5E;
+  color: rgb(243, 245, 247);
+  border: 2px solid #053C5E;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
@@ -113,10 +112,10 @@ a {
   /* The button used to open the sidebar */
 }
 .top-bar .nav-toggle {
-  width: 40%;
+  width: 15%;
 }
 .top-bar .nav-toggle .openbtn {
-  font-size: 1.2rem;
+  font-size: 1.2em;
   font-family: Lato;
   cursor: pointer;
   background-color: #1571D4;
@@ -141,10 +140,11 @@ a {
 }
 .top-bar .lookup input[type=text] {
   float: right;
-  padding: 10px 15px;
+  padding: 10px 10px;
   font-size: 1.2rem;
   border: 2px solid #053C5E;
   border-radius: 10px 0px 0px 10px;
+  max-width: 60%;
 }
 .top-bar .lookup input[type=submit] {
   float: right;
@@ -156,11 +156,31 @@ a {
   border: 2px solid #053C5E;
   border-radius: 0px 10px 10px 0px;
   padding: 10px 15px;
+  max-width: 40%;
 }
 
+@media screen and (max-width: 750px) {
+  .top-bar {
+    flex-wrap: wrap;
+    min-height: 100px;
+    width: 100vw;
+  }
+  .top-bar .nav-toggle, .top-bar .name {
+    width: max-content;
+    margin-bottom: 10px;
+  }
+  .top-bar .lookup {
+    width: 100%;
+    margin-right: 5%;
+  }
+  .top-bar .lookup input[type=text], .top-bar .lookup input[type=submit] {
+    float: right;
+    font-size: 1em;
+  }
+}
 .current {
   margin: 0 auto;
-  width: 80%;
+  width: 95%;
   min-height: 20vh;
   background-color: rgba(0, 0, 0, 0.5);
   border: 2px solid rgb(243, 245, 247);
@@ -198,31 +218,195 @@ a {
   font-size: 0.8rem;
   margin-bottom: 2px;
 }
+.current .split-1 .addtl-present {
+  display: flex;
+  align-items: center;
+}
+.current .split-1 .addtl-present .column {
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+}
 .current .split-2 {
   height: 18vh;
   width: 60%;
 }
-.current .split-2 .last-updated {
+.current .split-2 .row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.current .split-2 .row .last-updated {
   font-family: Lato-Light;
   font-size: x-small;
   text-align: right;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
+}
+.current .split-2 .hourly {
+  width: 100%;
+  height: 65%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.current .split-2 .hourly .hour {
+  width: 22%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.current .split-2 .hourly .hour img {
+  height: 50px;
+}
+.current .split-2 .hourly .hour p {
+  font-size: 0.8rem;
+  margin-bottom: 0px;
+}
+.current .split-2 .sun-facts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
+@media screen and (max-width: 950px) {
+  .current {
+    width: 90vw;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+  .current .split-1 {
+    padding: 20px;
+    min-height: 200px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .current .split-1 .present-details {
+    height: max-content;
+  }
+  .current .split-2 {
+    height: max-content;
+    padding: 20px;
+    width: 100%;
+    flex-direction: column;
+  }
+  .current .split-2 .row {
+    flex-direction: column;
+  }
+  .current .split-2 .hourly {
+    min-height: 40%;
+    flex-wrap: wrap;
+  }
+  .current .split-2 .hourly .hour {
+    height: max-content;
+  }
+}
+@media screen and (max-width: 375px) {
+  .current .split-1 .addtl-present .column {
+    min-height: 100px;
+  }
+  .current .split-2 .sun-facts {
+    flex-wrap: wrap;
+  }
+  .current .split-2 .hourly .hour {
+    width: 50%;
+  }
+}
 .future {
   width: 100vw;
-  height: 60vh;
+  min-height: 60vh;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  margin: 20px 0px;
+  margin: 60px 0px;
+  color: rgb(243, 245, 247);
 }
 .future .day {
-  height: 100%;
+  min-height: 60vh;
   width: 20%;
   background-color: rgba(0, 0, 0, 0.4);
   border: 2px solid #fff;
   border-radius: 20px;
+  padding: 2px;
+  position: relative;
+}
+.future .day .date {
+  text-align: center;
+}
+.future .day .temperatures {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.future .day .temperatures .temp-info h3 {
+  margin-bottom: 2px;
+}
+.future .day .temperatures .temp-info h4 {
+  margin-bottom: 5px;
+  font-family: Lato;
+  font-weight: normal;
+}
+.future .day .temperatures .temp-info p {
+  margin-bottom: 2px;
+}
+.future .day .statistics {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-top: 15px;
+}
+.future .day .statistics .stat {
+  width: 40%;
+}
+.future .day .statistics .stat p {
+  margin-bottom: 2px;
+}
+.future .day .bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 5px;
+}
+.future .day .bottom-row p {
+  font-size: 0.8rem;
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+@media screen and (max-width: 950px) {
+  .future {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 100vw;
+  }
+  .future .day {
+    width: 40vw;
+    margin: 10px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .future {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 100vw;
+  }
+  .future .day {
+    width: 80vw;
+    margin: 10px;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
